@@ -1,11 +1,13 @@
 import { ClassNames } from '@emotion/react';
-import React from 'react';
+import React, {useState} from 'react';
 
-const Todo = () => {
+const Todo = (props) => {
+    const [item,setItem] = useState(props.item);
+
   return (
     <div className="Todo">
-      <input type= "checkbox" id="todo0" name="todo8" value="todo0" />
-      <label for="todo0"> Todo 컴포넌트 만들기 </label>
+      <input type= "checkbox" id={item.id} name={item.id} checkd={item.done} />
+      <label id={item.id}>{item.title}</label>
     </div>
 
   )
