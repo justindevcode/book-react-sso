@@ -1,6 +1,7 @@
 import { ClassNames } from '@emotion/react';
 import React, {useState} from 'react';
-import {ListItem, ListItemText, InputBase, Checkbox} from "@mui/material"
+import {ListItem, ListItemText, InputBase, Checkbox, ListItemSecondaryAction, IconButton} from "@mui/material";
+import { DeleteOutline } from '@mui/icons-material';
 
 const Todo = (props) => {
     const [item,setItem] = useState(props.item);
@@ -19,6 +20,11 @@ const Todo = (props) => {
           fullWidth={true}
         />
       </ListItemText>
+      <ListItemSecondaryAction>
+        <IconButton aria-label='Delete Todo'>
+          <DeleteOutline />
+        </IconButton>
+      </ListItemSecondaryAction>
     </ListItem>
   )
 }
