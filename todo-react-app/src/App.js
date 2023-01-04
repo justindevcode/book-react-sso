@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import Todo from './Todo';
 import React,{useState} from 'react';
+import {List, Paper} from "@mui/material";
 
 function App() {
   const [items, setItem] = useState([{
@@ -16,26 +17,16 @@ function App() {
   }
 ])
 
-  let todoItems = items.length > 0 && items.map((item) => <Todo item={item} key={item.id} />)
-  return (
-    <div className="App">
-      {todoItems}
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */}
-    </div>
-  );
+  let todoItems = items.length > 0 && (
+    <Paper style={{margin:16}}>
+      <List>
+        {items.map((item) => (
+          <Todo item={item} key ={item.id} />
+        ))}
+      </List>
+    </Paper>
+  )
+  return <div className="App">{todoItems}</div>
 }
 
 export default App;
