@@ -1,12 +1,31 @@
 import logo from './logo.svg';
 import './App.css';
 import Todo from './Todo';
-import React,{useState} from 'react';
+import React,{useEffect, useState} from 'react';
 import {Container,List, Paper} from "@mui/material";
 import AddTodo from "./AddTodo"
 
 function App() {
   const [items, setItems] = useState([]);
+
+  //무한루프 안빠지게
+  useEffect(() => {
+    const requestOptions = {
+      method: "GET",
+      headers: { "Content-Type": "application/json"},
+    }
+    fetch("http://localhost:8080/todo", requestOptions)
+    .then((reponse) => reponse.json())
+    .then(
+      (response) => {
+        setItems(response.data);
+      },
+      (error) => {}
+    )
+  },[])
+
+
+
 
 
 const addItem = (item) => {
