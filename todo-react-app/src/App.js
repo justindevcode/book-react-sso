@@ -6,17 +6,7 @@ import {Container,List, Paper} from "@mui/material";
 import AddTodo from "./AddTodo"
 
 function App() {
-  const [items, setItem] = useState([{
-    id: "0",
-    title: "Hello World 1",
-    done: true
-  },
-  {
-    id: "1",
-    title: "Hello World 2",
-    done: true
-  }
-])
+  const [items, setItem] = useState([]);
 
 
 const addItem = (item) => {
@@ -26,11 +16,16 @@ const addItem = (item) => {
   console.log("items : ", items);
 }
 
+const deleteItem = (item) => {
+  const newItems = items.filter(e => e.id !== item.id);
+  setItem([...newItems]);
+}
+
   let todoItems = items.length > 0 && (
     <Paper style={{margin:16}}>
       <List>
         {items.map((item) => (
-          <Todo item={item} key ={item.id} />
+          <Todo item={item} key ={item.id} deleteItem={deleteItem} />
         ))}
       </List>
     </Paper>
