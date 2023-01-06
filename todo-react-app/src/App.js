@@ -8,6 +8,7 @@ import { call , signout} from "./service/ApiService";
 
 function App() {
   const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     call("/todo", "GET", null)
@@ -61,13 +62,33 @@ function App() {
     </AppBar>
   );
 
-  return (<div className="App">
-          {navigationBar}
-        <Container maxWidth="md">
-          <AddTodo addItem={add}/>
-          <div className='TodoList'>{todoItems}</div>
-        </Container>
-  </div>)
+  let todoListPage = (
+    <div>
+      {navigationBar}
+      <Container maxWidth="md">
+        <AddTodo addItem={add} />
+        <div className='TodoList'>{todoItems}</div>
+      </Container>
+    </div>
+  )
+
+  let lodingPange = <h1> 로딩중.. </h1>
+  let content = lodingPange;
+
+  //로딩중아니면 todoListpage선택
+  if (!loading) {
+    content = todoListPage
+  }
+
+  return <div className='App'>{content}</div>
+
+  // return (<div className="App">
+  //         {navigationBar}
+  //       <Container maxWidth="md">
+  //         <AddTodo addItem={add}/>
+  //         <div className='TodoList'>{todoItems}</div>
+  //       </Container>
+  // </div>)
 }
 
 export default App;
