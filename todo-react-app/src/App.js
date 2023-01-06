@@ -2,28 +2,12 @@ import logo from './logo.svg';
 import './App.css';
 import Todo from './Todo';
 import React,{useEffect, useState} from 'react';
-import {Container,List, Paper} from "@mui/material";
+import {Container,List, Paper,Grid,Button,AppBar,Toolbar,Typography} from "@mui/material";
 import AddTodo from "./AddTodo"
-import { call } from "./service/ApiService";
+import { call , signout} from "./service/ApiService";
 
 function App() {
   const [items, setItems] = useState([]);
-
-  // //무한루프 안빠지게
-  // useEffect(() => {
-  //   const requestOptions = {
-  //     method: "GET",
-  //     headers: { "Content-Type": "application/json"},
-  //   }
-  //   fetch("http://localhost:8080/todo", requestOptions)
-  //   .then((reponse) => reponse.json())
-  //   .then(
-  //     (response) => {
-  //       setItems(response.data);
-  //     },
-  //     (error) => {}
-  //   )
-  // },[])
 
   useEffect(() => {
     call("/todo", "GET", null)
@@ -49,25 +33,6 @@ function App() {
     );
   };
 
-
-
-
-// const addItem = (item) => {
-//   item.id = "ID-" + items.length;
-//   item.done = false;
-//   setItems([...items,item]);
-//   console.log("items : ", items);
-// }
-
-// const deleteItem = (item) => {
-//   const newItems = items.filter(e => e.id !== item.id);
-//   setItems([...newItems]);
-// }
-
-// const editItem = () => {
-//   setItems([...items]);
-// }
-
   let todoItems = items.length > 0 && (
     <Paper style={{margin:16}}>
       <List>
@@ -77,7 +42,27 @@ function App() {
       </List>
     </Paper>
   )
+
+
+  let navigationBar = (
+    <AppBar position="static">
+      <Toolbar>
+        <Grid justifyContent="space-between" container>
+          <Grid item>
+            <Typography variant="h6">오늘의 할일</Typography>
+          </Grid>
+          <Grid item>
+            <Button color='inherit' raised onClick={signout}>
+              로그아웃
+            </Button>
+          </Grid>
+        </Grid>
+      </Toolbar>
+    </AppBar>
+  );
+
   return (<div className="App">
+          {navigationBar}
         <Container maxWidth="md">
           <AddTodo addItem={add}/>
           <div className='TodoList'>{todoItems}</div>
