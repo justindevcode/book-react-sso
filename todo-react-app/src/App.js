@@ -6,13 +6,18 @@ import {Container,List, Paper,Grid,Button,AppBar,Toolbar,Typography} from "@mui/
 import AddTodo from "./AddTodo"
 import { call , signout} from "./service/ApiService";
 
+
+
 function App() {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     call("/todo", "GET", null)
-    .then((response) => setItems( response.data )
+    .then((response) => {
+        setLoading(false)
+        setItems( response.data )
+      }
     );
   }, []);
 
@@ -72,23 +77,16 @@ function App() {
     </div>
   )
 
-  let lodingPange = <h1> 로딩중.. </h1>
-  let content = lodingPange;
+  let lodingPage = <h1> 로딩중.. </h1>
+  let content = lodingPage;
 
   //로딩중아니면 todoListpage선택
   if (!loading) {
-    content = todoListPage
+    content = todoListPage;
   }
 
   return <div className='App'>{content}</div>
 
-  // return (<div className="App">
-  //         {navigationBar}
-  //       <Container maxWidth="md">
-  //         <AddTodo addItem={add}/>
-  //         <div className='TodoList'>{todoItems}</div>
-  //       </Container>
-  // </div>)
 }
 
 export default App;
