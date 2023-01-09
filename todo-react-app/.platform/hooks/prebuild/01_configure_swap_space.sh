@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SWAPFILE=/var/SWAPFILE
+SWAPFILE=/var/swapfile
 
 if [ -f $SWAPFILE ]; then
   echo "$SWAPFILE found, skip"
