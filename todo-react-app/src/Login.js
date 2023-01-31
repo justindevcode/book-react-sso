@@ -1,6 +1,6 @@
 import React from "react"
 import { Container,Grid,Typography,Button, TextField } from "@mui/material";
-import { signin } from "./service/ApiService";
+import { signin , socialLogin } from "./service/ApiService";
 import { Link } from 'react-router-dom';
 
 
@@ -18,6 +18,12 @@ class Login extends React.Component {
     // ApiService의 signin 메서드를 사용 해 로그인.
     signin({ username: username, password: password });
   }
+
+  handleSocialLogin = (provider) => {
+    socialLogin(provider);
+  }
+
+  
 
   render() {
     return (
@@ -64,6 +70,11 @@ class Login extends React.Component {
                 color="primary"
               >
                 로그인
+              </Button>
+            </Grid>
+            <Grid itme xs = {12}>
+              <Button onClick={() => this.handleSocialLogin("github")} fullWidth variant='contained' style={{backgroundColor: '#000'}}>
+                깃허브로 로그인하기
               </Button>
             </Grid>
             <Grid itme>
