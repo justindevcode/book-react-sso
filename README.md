@@ -1,5 +1,5 @@
 # Refer
-![image](https://github.com/user-attachments/assets/62f4bc7b-8e64-4f42-8e8f-a97588ab653c)
+<img src="https://github.com/user-attachments/assets/62f4bc7b-8e64-4f42-8e8f-a97588ab653c" width="50%" height="50%">
 
 # :star: About
 |<img width="943" alt="1 PNG" src="https://github.com/user-attachments/assets/54680484-6ebe-42cb-a856-8ec09efb3f16">|<img width="1250" alt="2 PNG" src="https://github.com/user-attachments/assets/36360a71-7e1e-43e0-835d-71074b28b011">|
